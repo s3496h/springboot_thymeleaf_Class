@@ -9,6 +9,11 @@ public class MainContoller {
     @GetMapping("/basic")
     @ResponseBody
     public String index() {
-       return "안녕하세요 index 입니다";
+        return "안녕하세요 index 입니다";
+    }
+
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/question/list";
     }
 }
