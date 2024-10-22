@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="Ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <title>Title</title>
+</head>
+<body>
+<!--네비게이션바-->
+<nav th:replace= "~{navber :: navbarFragment}"></nav>
+<!--레이아웃-->
+<th:block layout:fragment="content"></th:block>
+<!-- Bootstrap JS -->
+<script th:src="@{/bootstrap.min.js}"></script>
+</body>
+</html>
