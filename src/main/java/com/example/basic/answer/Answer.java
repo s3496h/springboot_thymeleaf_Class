@@ -1,6 +1,7 @@
 package com.example.basic.answer;
 
 import com.example.basic.qusetion.Question;
+import com.example.basic.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,11 @@ public class Answer {
 
     private LocalDateTime createDate;
 
+    private LocalDateTime modifyDate;
+
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
 }
