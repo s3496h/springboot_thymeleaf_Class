@@ -2,6 +2,7 @@ package com.example.basic.qusetion;
 
 import com.example.basic.DataNotFoundException;
 import com.example.basic.answer.Answer;
+import com.example.basic.answer.AnswerRepository;
 import com.example.basic.user.SiteUser;
 import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.Optional;
 @Service
 public class QuestionService {
     private final QuestionRepository questionRepository;
+    private final AnswerRepository answerRepository;
 
     private Specification<Question> search(String kw) {
         return new Specification<>() {
@@ -67,7 +69,14 @@ public class QuestionService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         Specification<Question> spec = search(kw);
-        return questionRepository.findAll(spec,pageable);
+        return this.questionRepository.fineAllByKeyword(kw, pageable);
+    }
+    public Page<Answer> getListAnswer(int page,String kw) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 5, Sort.by(sorts));
+        Specification<Question> spec = search(kw);
+        return this.answerRepository.fineAllByKeyword(kw, pageable);
     }
 
     public void modify(Question question, String subject, String content) {

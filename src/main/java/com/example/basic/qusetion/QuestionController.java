@@ -2,6 +2,7 @@ package com.example.basic.qusetion;
 
 
 
+import com.example.basic.answer.Answer;
 import com.example.basic.answer.AnswerForm;
 import com.example.basic.user.SiteUser;
 import com.example.basic.user.UserService;
@@ -39,7 +40,10 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm ) {
+    public String detail(Model model,@RequestParam(value="page", defaultValue="0")int page, @RequestParam(value = "kw" ,defaultValue = "")String kw,@PathVariable("id") Integer id, AnswerForm answerForm) {
+        Page<Answer> paging = this.questionService.getListAnswer(page,kw);
+        model.addAttribute("paging", paging);
+        model.addAttribute("kw",kw);
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
