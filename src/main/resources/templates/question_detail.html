@@ -45,6 +45,7 @@
                     <div class="mb-2">modified at</div>
                     <div th:text="${#temporals.format(answer.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
                 </div>
+
                 <div class="badge bg-light text-dark p-2 text-start">
                     <div class="mb-2"><span th:if="${question.author != null}" th:text="${question.author.username}"></span></div>
                     <div th:text="${#temporals.format(answer.createDate,'yyyy-MM-dd HH:mm')}"></div>

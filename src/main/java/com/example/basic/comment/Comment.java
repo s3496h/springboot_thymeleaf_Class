@@ -18,19 +18,19 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "text")
-    private String content;
-
-    private LocalDateTime createDate;
-
-    private LocalDateTime updateDate;
     @ManyToOne
-    private Question question;
+    private Question question; // 댓글이 속한 질문
 
     @ManyToOne
-    private Answer answer;
+    private Answer answer; // 댓글이 속한 답변
 
     @ManyToOne
-    private SiteUser author;
+    private SiteUser author; // 댓글 작성자
+
+    @Column(columnDefinition = "TEXT")
+    private String content; // 댓글 내용
+
+    private LocalDateTime createDate; // 작성일
+    private LocalDateTime modifyDate; // 수정일
 
 }
